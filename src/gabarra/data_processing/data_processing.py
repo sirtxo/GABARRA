@@ -1,6 +1,5 @@
 
 import pandas as pd
-import pandas as pd
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
 def create_dummies(df):
@@ -58,7 +57,7 @@ def fill_zeros_with_mean(df, column):
 
 
 def fill_nans_with_mean(df, column):
-      """
+    """
      Fills NaN (Not a Number) values in a specified column of a DataFrame with the column's mean, excluding NaNs.
 
      Args:
@@ -71,11 +70,11 @@ def fill_nans_with_mean(df, column):
      Raises:
         ValueError: If the specified column does not exist in the DataFrame.
 
-     """
+    """
     mean_value = df[column].mean(skipna=True)
 
     df[column] = df[column].fillna(mean_value)
-    
+        
     return df
 
 
