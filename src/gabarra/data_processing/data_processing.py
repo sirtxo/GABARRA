@@ -23,3 +23,26 @@ def create_dummies(df):
     final_df = pd.concat([numeric_df, dummies_df], axis=1)
 
     return final_df
+
+
+# Replace zeros with the mean of non-zero values in a specified column of a DataFrame
+def fill_zeros_with_mean(df, column):
+    # Calculate the mean of the non-zero values in the specified column
+    mean_value = df[df[column] != 0][column].mean()
+    
+    # Replace zeros in the specified column with the calculated mean value
+    df[column] = df[column].replace(0, mean_value)
+    
+    return df
+
+
+
+# Replace NaN values with the mean of the specified column in a DataFrame
+def fill_nans_with_mean(df, column):
+    # Calculate the mean of the specified column, ignoring NaN values
+    mean_value = df[column].mean(skipna=True)
+    
+    # Replace NaN values in the specified column with the calculated mean value
+    df[column] = df[column].fillna(mean_value)
+    
+    return df
