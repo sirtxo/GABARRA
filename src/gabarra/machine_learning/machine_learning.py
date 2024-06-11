@@ -51,7 +51,7 @@ def linear_regression(df:pd, target_column:str):
 
 
 
-def calculate_metrics(y_test, predictions, model_name, decimal_places=2):
+def calculate_metrics(y_test:np, predictions:np, model_name:str, decimal_places=2):
     """
     Calculates and returns a DataFrame with regression metrics: MAE, MAPE, MSE, and RMSE.
 
