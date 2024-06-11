@@ -4,6 +4,7 @@ from sklearn.metrics import mean_squared_error, r2_score, silhouette_score , mea
 from sklearn.cluster import KMeans
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 import numpy as np
 import seaborn as sns
@@ -291,3 +292,52 @@ def y_generator(path, labels, separator):
                         arr[x] = 1
                         y.append(arr)
     return y
+
+def random_forest_regression(df, target_column,
+                              test_size=0.2,
+                                random_state=42,
+                                  n_estimators=100):
+    """
+    Performs Random Forest regression on the given dataset.
+
+    Parameters:
+    df (DataFrame): The DataFrame containing the data.
+    target_column (str): The name of the target column.
+    test_size (float, optional): The proportion of the dataset to include in the test split. Default is 0.2.
+    random_state (int, optional): Controls the shuffling applied to the data before applying the split. Default is 42.
+    n_estimators (int, optional): The number of trees in the forest. Default is 100.
+
+    Returns:
+    dict: A dictionary containing the model, predictions, MAE, MAPE, MSE, RMSE, and R^2 score.
+    """
+    # Splitting the data into features (X) and target (y)
+    X = df.drop(columns=[target_column])
+    y = df[target_column]
+
+    # Splitting the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
+
+    # Creating and training the Random Forest model
+    model = RandomForestRegressor(n_estimators=n_estimators, random_state=random_state)
+    model.fit(X_train, y_train)
+
+    # Predictions
+    y_pred = model.predict(X_test)
+
+    # Performance metrics
+    mae = mean_absolute_error(y_test, y_pred)
+    mape = mean_absolute_percentage_error(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    r2 = r2_score(y_test, y_pred)
+
+    # Results
+    return {
+        "model": model,
+        "predictions": y_pred,
+        "MAE": mae,
+        "MAPE": mape,
+        "MSE": mse,
+        "RMSE": rmse,
+        "R2_score": r2
+    }
