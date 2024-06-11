@@ -95,3 +95,77 @@ def plot_pie_charts(df, columns):
         plt.title(f"% de pedidos por {column}")
         plt.show()
 
+# Interactive line chart
+
+import plotly.express as px
+
+def plot_interactive_line_chart(df, x_column, y_column, color_column=None):
+    """
+    Creates an interactive line chart for the specified columns in the DataFrame.
+
+    Parameters:
+    df (pd.DataFrame): The DataFrame containing the data.
+    x_column (str): The name of the column to be used for the x-axis.
+    y_column (str): The name of the column to be used for the y-axis.
+    color_column (str, optional): The name of the column used for color differentiation. Default is None.
+
+    Returns:
+    None
+    """
+    # Check if the columns exist in the DataFrame
+    if x_column not in df.columns:
+        print(f"Column {x_column} not found in the DataFrame.")
+        return
+    if y_column not in df.columns:
+        print(f"Column {y_column} not found in the DataFrame.")
+        return
+    if color_column and color_column not in df.columns:
+        print(f"Column {color_column} not found in the DataFrame.")
+        return
+
+    # Create the line chart
+    fig = px.line(df, x=x_column, y=y_column, color=color_column, title=f'{y_column} over {x_column}')
+
+    # Update the layout for better appearance
+    fig.update_layout(
+        xaxis_title=x_column,
+        yaxis_title=y_column,
+        legend_title=color_column if color_column else 'Legend',
+        hovermode='x unified'
+    )
+
+    fig.show()
+
+# Interactive pie chart
+
+import plotly.express as px
+import plotly.graph_objects as go
+
+def plot_interactive_pie_chart(df, column):
+    """
+    Creates an interactive pie chart for the specified column in the DataFrame.
+
+    Parameters:
+    df (pd.DataFrame): The DataFrame containing the data.
+    column (str): The name of the column for which the pie chart will be created.
+
+    Returns:
+    None
+    """
+    # Check if the column exists in the DataFrame
+    if column not in df.columns:
+        print(f"Column {column} not found in the DataFrame.")
+        return
+
+    # Aggregate the data
+    data = df[column].value_counts().reset_index()
+    data.columns = [column, 'counts']
+
+    # Create the pie chart
+    fig = px.pie(data, values='counts', names=column, title=f'Percentage of Orders by {column}')
+
+    # Update the layout for better appearance
+    fig.update_traces(textposition='inside', textinfo='percent+label')
+    fig.update_layout(uniformtext_minsize=12, uniformtext_mode='hide')
+
+    fig.show()
