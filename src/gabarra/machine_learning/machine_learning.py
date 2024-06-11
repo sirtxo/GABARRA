@@ -259,3 +259,35 @@ def most_common_words(texts:list, nwords:int, language:str):
     print("Most common words:")
     for word, frequency in most_common_words:
         print(f'{word}: {frequency}')
+
+import os
+
+def y_generator(path, labels, separator):
+
+    ''' 
+    Categorize a set of images for the training of multi-class learning models.
+    Based on the image name.
+    path[str]: Path to the folder.
+    labels[list]: Possible output labels.
+    separator[str]: Separator in the image name.
+     
+    '''
+
+    y = []
+
+    for i in os.listdir(path):
+        s = i
+        if separator:
+            s = i.split(separator)
+        j = labels
+        c =""
+        for w in s:
+            for r in j:
+                if r.lower() in w.lower():
+                    c = w
+                for x,y in enumerate(labels):
+                    if y == c:
+                        arr = np.zeros(len(labels))
+                        arr[x] = 1
+                        y.append(arr)
+    return y
