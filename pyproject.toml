@@ -1,0 +1,39 @@
+[project]
+name = "gabarra"
+version = "0.0.1"
+authors = [
+  { name="Ekaitz San Roman", email="ekaitz77@gmail.com" },
+  { name="Iñigo Auzmendi", email="iauzmendipinedo@gmail.com" },
+  { name="Adrian Sarikaya", email="adri-kh93@hotmail.com" },
+  { name="Pablo Pozos", email="pablo.pozo.vargas@gmail.com" },
+  { name="Karen Fajardo", email="karenfajardo.sa@gmail.com" },
+  { name="Ivan Fernandez", email="ivan.fdez.luperena@gmail.com" },
+  { name="Gaizka Torre", email="torreggb@gmail.com" },
+  { name="Carlota Mingo", email="mingoirache@gmail.com" },
+  { name="Cristina Fernandez", email="cristina.fernandez@txorierri.com" },
+  { name="Jessica Rodriguez", email="jcrdzg@gmail.com" },
+  { name="Adolfo Campos", email="adolfogutcampos@gmail.com" },
+  { name="Adrian Ruiz", email="adrian.ruiz.donado@gmail.com" },
+  { name="Daniel Garcia", email="daniel.4dagarci@gmail.com" },
+  { name="Juan Corrales", email="juan.corral.camara@gmail.com" },
+  { name="Raul Solari", email="arzuasolari@hotmail.com" },
+  { name="Ines Abascal", email="inesabascal98@gmail.com" },
+  { name="David Pernas", email="davidpernas@gmail.com" },
+  { name="Miguel La Cruz", email="mislap87@gmail.com" },
+]
+description = "Data science library"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/sirtxo/GABARRA"
+Issues = "https://github.com/sirtxo/GABARRA/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
