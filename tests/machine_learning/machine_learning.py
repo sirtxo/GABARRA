@@ -173,7 +173,7 @@ class TestXGBoostRegression(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    
+
 class TestRandomForestRegression(unittest.TestCase):
     def setUp(self):
         # For random_forest_regression function
