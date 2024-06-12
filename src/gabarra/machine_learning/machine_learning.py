@@ -341,3 +341,4 @@ def random_forest_regression(df, target_column,
         "RMSE": rmse,
         "R2_score": r2
     }
+    
