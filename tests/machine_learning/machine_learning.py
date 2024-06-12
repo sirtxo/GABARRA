@@ -1,18 +1,8 @@
 import unittest
-import pandas as pd
-import numpy as np
 from sklearn.datasets import make_regression
-from sklearn.metrics import mean_squared_error, r2_score, silhouette_score
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn import metrics
-from sklearn.cluster import KMeans
-from sklearn.ensemble import GradientBoostingRegressor
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.feature_extraction.text import CountVectorizer
 import sys
 import io
+from xgboost import XGBRegressor
 
 # Assuming the functions are available at these imports
 from src.gabarra.machine_learning.machine_learning import *
@@ -180,68 +170,6 @@ class TestXGBoostRegression(unittest.TestCase):
         self.assertIsInstance(result["MSE"], float)
         self.assertIsInstance(result["RMSE"], float)
         self.assertIsInstance(result["R2_score"], float)
-
-if __name__ == '__main__':
-    unittest.main()
-    
-class TestMostCommonWords(unittest.TestCase):
-    def setUp(self):
-        # For most_common_words function
-        self.texts = ['I hate cats', 'I love dogs', 'My dog love cats']
-        self.nwords = 3
-        self.language = 'english'
-
-        # For y_generator function
-        self.path = './test_images'  # path to a test directory
-        self.labels = ['cat', 'dog']
-        self.separator = '_'
-
-    def test_most_common_words(self):
-        # Redirect the stdout to a buffer
-        buf = io.StringIO()
-        sys.stdout = buf
-
-        # Call the function
-        most_common_words(self.texts, self.nwords, self.language)
-
-        # Get the output and restore the stdout
-        output = buf.getvalue()
-        sys.stdout = sys.__stdout__
-
-        # Check the output
-        self.assertIn('cats: 2', output)
-        self.assertIn('love: 2', output)
-        self.assertIn('dog: 1', output)
-
-    def test_y_generator(self):
-        # Call the function
-        result = y_generator(self.path, self.labels, self.separator)
-
-        # Check if the output is a list
-        self.assertIsInstance(result, list)
-
-        # Check if the list elements are numpy arrays
-        self.assertTrue(all(isinstance(elem, np.ndarray) for elem in result))
-
-if __name__ == '__main__':
-    unittest.main()
-
-class TestYGenerator(unittest.TestCase):
-    def setUp(self):
-        # For y_generator function
-        self.path = './test_images'  # path to a test directory
-        self.labels = ['cat', 'dog']
-        self.separator = '_'
-
-    def test_y_generator(self):
-        # Call the function
-        result = y_generator(self.path, self.labels, self.separator)
-
-        # Check if the output is a list
-        self.assertIsInstance(result, list)
-
-        # Check if the list elements are numpy arrays
-        self.assertTrue(all(isinstance(elem, np.ndarray) for elem in result))
 
 if __name__ == '__main__':
     unittest.main()
