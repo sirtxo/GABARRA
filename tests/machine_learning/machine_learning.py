@@ -11,6 +11,8 @@ from sklearn.ensemble import GradientBoostingRegressor
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.feature_extraction.text import CountVectorizer
+import sys
+import io
 
 # Assuming the functions are available at these imports
 from src.gabarra.machine_learning.machine_learning import *
