@@ -7,7 +7,7 @@ def create_dummies(df):
     This function takes a DataFrame and creates dummy variables for all object columns.
     The resulting DataFrame includes the dummy variables along with the original numeric variables.
 
-    Parameters:
+    Parameters:pip
     df (pd.DataFrame): The input DataFrame
 
     Returns:
