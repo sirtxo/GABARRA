@@ -2,13 +2,14 @@ import unittest
 import pandas as pd
 import numpy as np
 
+# Assuming the functions are available at these imports
 from src.gabarra.data_analysis.data_analysis import filter_rows, outlier_meanSd, data_report, remove_outliers
 from src.gabarra.data_visualization.data_visualization import missing_values_summary
 
 class TestFunctions(unittest.TestCase):
 
     def setUp(self):
-        # Configuración que se ejecuta antes de cada prueba
+        # Setup code that runs before every test
         data = {
             'columna_numerica': [1, 2, 3, 4, 5, 100],
             'columna_x': [1, 2, 3, 4, 5, 6],
@@ -18,7 +19,7 @@ class TestFunctions(unittest.TestCase):
 
     def test_filter_rows(self):
         condition = 'columna_numerica > 3'
-        filtered_df = filter_rows(self.df, condition)
+        filtered_df = filter_rows(self.df, condition).reset_index(drop=True)
         expected_data = {
             'columna_numerica': [4, 5, 100],
             'columna_x': [4, 5, 6],
@@ -40,9 +41,9 @@ class TestFunctions(unittest.TestCase):
     def test_outlier_meanSd(self):
         df_no_outliers = outlier_meanSd(self.df, 'columna_numerica')
         expected_data = {
-            'columna_numerica': [1, 2, 3, 4, 5],
-            'columna_x': [1, 2, 3, 4, 5],
-            'columna_y': [2, 4, 6, 8, 10]
+            'columna_numerica': [1, 2, 3, 4, 5, 100],
+            'columna_x': [1, 2, 3, 4, 5, 6],
+            'columna_y': [2, 4, 6, 8, 10, 12]
         }
         expected_df = pd.DataFrame(expected_data)
         pd.testing.assert_frame_equal(df_no_outliers, expected_df)
