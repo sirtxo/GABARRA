@@ -1,10 +1,23 @@
-import GABARRA.tests.test_DP as test_DP
+
 import pandas as pd
 
 import numpy as np
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 import sys
-from src.gabarra.data_processing import data_processing as dp
+
+import unittest
+
+
+
+import importlib.util
+from GABARRA.src.gabarra.data_processing import data_processing as dp
+
+
+import sys
+
+# Añadir la ruta del directorio data_processing a la variable sys.path
+sys.path.append(r"C:\Users\iauzm\OneDrive\Desktop\DATA SCIENCE\AUZMENDI\DS_TheBridgeBBK_MBIL2024\Talleres\Gabarra\GABARRA\src\gabarra\data_processing")
+
 
 
 def test_create_dummies():
